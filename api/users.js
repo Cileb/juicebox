@@ -34,7 +34,7 @@ usersRouter.post("/login", async (req, res, next) => {
     const user = await getUserByUsername(username);
 
     if (user && user.password == password) {
-      let token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "5h" });
+      let token = jwt.sign(user, JWT_SECRET, { expiresIn: "5h" });
       res.send({ message: "You're logged in!", token });
     } else {
       next({
@@ -72,7 +72,7 @@ usersRouter.post("/register", async (req, res, next) => {
         id: user.id,
         username,
       },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       {
         expiresIn: "1w",
       }
