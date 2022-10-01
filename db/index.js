@@ -1,11 +1,15 @@
+require("dotenv").config();
 const { Client } = require("pg"); // imports the pg module
+const { DB_SECRET } = process.env;
 
 // supply the db name and location of the database
-const client = new Client({
-  user: "postgres",
-  password: "password01",
-  database: "juicebox-dev",
-});
+const client = new Client(
+  process.env.DATABASE_URL || {
+    user: "postgres",
+    password: DB_SECRET,
+    database: "juicebox-dev",
+  }
+);
 
 // USER Methods
 
