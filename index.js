@@ -8,7 +8,7 @@ const apiRouter = require("./api");
 const morgan = require("morgan");
 
 server.use(morgan("dev"));
-server.use(express.json());
+
 
 const { client } = require("./db");
 client.connect();
@@ -22,7 +22,3 @@ server.use((req, res, next) => {
 });
 
 server.use("/api", apiRouter);
-
-server.listen(PORT, () => {
-  console.log("The server is up on port", PORT);
-});
