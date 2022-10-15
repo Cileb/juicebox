@@ -23,16 +23,17 @@ tagsRouter.get("/:tagName/posts", async (req, res, next) => {
   try {
     const allPosts = await getPostsByTagName(tagName);
     res.send({ allPosts });
-    // const posts = allPosts.filter((post) => {
-    //   return post.active && req.user && post.author.id === req.user.id;
-    // });
-
-    // res.send({ posts });
-    // use our method to get posts by tag name from the db
-    // send out an object to the client { posts: // the posts }
   } catch ({ name, message }) {
     next({ success: "false", name, message });
   }
 });
 
 module.exports = tagsRouter;
+
+// const posts = allPosts.filter((post) => {
+//   return post.active && req.user && post.author.id === req.user.id;
+// });
+
+// res.send({ posts });
+// use our method to get posts by tag name from the db
+// send out an object to the client { posts: // the posts }
